@@ -1,0 +1,22 @@
+version: "3.9"
+
+networks:
+  bz-network:
+    name: bz-network
+    driver: bridge
+
+services:
+  bz-gateway:
+    build: .
+    container_name: bz-gateway
+    image: bz-gateway:latest
+    env_file:
+      - .env
+    environment:
+      - TZ=America/Sao_Paulo
+    volumes:
+      - ${PWD}:/app
+    ports:
+      - 3000:3000
+    networks:
+      - bz-network
