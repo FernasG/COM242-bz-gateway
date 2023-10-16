@@ -1,4 +1,4 @@
-ARG NODE_VERSION=18.18.2
+ARG NODE_VERSION=18.18.1
 ARG NPM_VERSION=10.2
 
 FROM docker.io/node:${NODE_VERSION}
@@ -18,4 +18,4 @@ EXPOSE 3000
 
 COPY . .
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "start:dev"]
