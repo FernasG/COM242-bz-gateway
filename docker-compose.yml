@@ -20,3 +20,26 @@ services:
       - 3000:3000
     networks:
       - bz-network
+    depends_on:
+      - rabbitmq
+      - postgres
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:management
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=A0u48RmVh3S3
+    ports:
+      - 5672:5672
+      - 15672:15672
+    networks:
+      - bz-network
+
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: B5Ia4v39YUIz
+    networks:
+    - bz-network
