@@ -7,6 +7,11 @@ export class UsersController {
   constructor(@Inject('SYSTEM_SERVICE') private clientRMQ: ClientRMQ) { }
 
   @Post()
+  public async login() {
+    
+  }
+
+  @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.clientRMQ.send('createUser', createUserDto);
   }
