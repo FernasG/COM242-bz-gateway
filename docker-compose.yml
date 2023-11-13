@@ -38,6 +38,7 @@ services:
 
   postgres:
     image: postgres
+    container_name: postgres
     restart: always
     environment:
       POSTGRES_PASSWORD: B5Ia4v39YUIz
