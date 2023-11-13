@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ClientsModule } from '@nestjs/microservices';
 import { UsersController } from './users.controller';
-import { RabbitMQModuleAsync } from 'src/libraries';
+import { RabbitMQModuleAsync } from '@libraries';
 
 @Module({
   imports: [
