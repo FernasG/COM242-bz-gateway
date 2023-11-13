@@ -1,13 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Inject, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Inject, UseInterceptors } from '@nestjs/common';
 import { ClientRMQ } from '@nestjs/microservices';
 import { CreateUserDto, UpdateUserDto } from './users.interface';
 import { Public } from 'src/auth/auth.decorators';
+import { RabbitMQInterceptor } from '@libraries';
 
 @Controller('users')
+@UseInterceptors(RabbitMQInterceptor)
 export class UsersController {
-  constructor(
-    @Inject('SYSTEM_SERVICE') private readonly clientRMQ: ClientRMQ
-  ) { }
+  constructor(@Inject('SYSTEM_SERVICE') private readonly clientRMQ: ClientRMQ) { }
 
   @Post()
   @Public()
