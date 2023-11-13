@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, OnModuleInit, Inject } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Inject } from '@nestjs/common';
 import { CreateUserDto, UpdateUserDto } from './users.interface';
 import { ClientRMQ } from '@nestjs/microservices';
 
