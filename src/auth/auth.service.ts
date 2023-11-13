@@ -18,7 +18,6 @@ export class AuthService {
     const { password_hash, ...userSafeData } = user;
 
     const comparePassword = bcrypt.compareSync(password, password_hash);
-    console.log(comparePassword);
 
     if (!comparePassword) throw new UnauthorizedException('Unable to Sign In');
 
