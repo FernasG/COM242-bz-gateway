@@ -1,4 +1,15 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { AuthService } from './auth.service';
+import { Public } from './auth.decorators';
 
-@Controller('auth')
-export class AuthController { }
+@Controller()
+export class AuthController {
+  constructor(private readonly authService: AuthService) { }
+
+  @Post('login')
+  @Public()
+  @HttpCode(HttpStatus.OK)
+  public async login(@Body() { email, password }: any) {
+    return this.authService.signIn(email, password);
+  }
+}

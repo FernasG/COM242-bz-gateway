@@ -1,17 +1,16 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Inject } from '@nestjs/common';
-import { CreateUserDto, UpdateUserDto } from './users.interface';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Inject, UseGuards } from '@nestjs/common';
 import { ClientRMQ } from '@nestjs/microservices';
+import { CreateUserDto, UpdateUserDto } from './users.interface';
+import { Public } from 'src/auth/auth.decorators';
 
 @Controller('users')
 export class UsersController {
-  constructor(@Inject('SYSTEM_SERVICE') private clientRMQ: ClientRMQ) { }
+  constructor(
+    @Inject('SYSTEM_SERVICE') private readonly clientRMQ: ClientRMQ
+  ) { }
 
   @Post()
-  public async login() {
-    
-  }
-
-  @Post()
+  @Public()
   create(@Body() createUserDto: CreateUserDto) {
     return this.clientRMQ.send('createUser', createUserDto);
   }
