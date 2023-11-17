@@ -68,6 +68,7 @@ model Street {
   neighborhood String
   qrcode_url   String    @unique
   vacancies    Int
+  hour_price   Float     @default(3)
   created_at   DateTime  @default(now())
   updated_at   DateTime?
 
@@ -82,6 +83,7 @@ model Parking_Session {
   entry_time  DateTime
   hours       Float?
   total_price Int?
+  hour_price  Float
   created_at  DateTime  @default(now())
   updated_at  DateTime?
 
