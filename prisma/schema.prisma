@@ -80,8 +80,8 @@ model Street {
 model Parking_Session {
   id          String    @id @default(uuid())
   entry_time  DateTime
-  hours       Float
-  total_price Int
+  hours       Float?
+  total_price Int?
   created_at  DateTime  @default(now())
   updated_at  DateTime?
 
