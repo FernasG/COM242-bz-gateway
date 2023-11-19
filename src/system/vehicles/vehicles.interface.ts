@@ -1,13 +1,17 @@
-import { IsOptional, IsString, Length } from "class-validator";
+import { IsNotEmpty, IsOptional, IsString, Length } from "class-validator";
 
 export class CreateVehicleDto {
+  @IsString()
+  @IsNotEmpty()
+  user_id: string;
+
   @IsString()
   @Length(6, 12)
   plate: string;
   
   @IsString()
   @Length(3, 20)
-  manufacture: string;
+  manufacturer: string;
   
   @IsString()
   @Length(3, 20)

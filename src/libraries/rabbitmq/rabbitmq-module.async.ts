@@ -1,4 +1,3 @@
-import { DynamicModule } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ClientsModuleAsyncOptions, Transport } from '@nestjs/microservices';
 

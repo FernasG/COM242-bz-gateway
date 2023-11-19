@@ -1,6 +1,5 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Inject, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Inject, UseInterceptors } from '@nestjs/common';
 import { ClientRMQ } from '@nestjs/microservices';
-import { Public } from 'src/auth/auth.decorators';
 import { RabbitMQInterceptor } from '@libraries';
 import { CreateParkingSessionDto, FinishParkingSessionDto, UpdateParkingSessionDto } from './parking_sessions.interface';
 
@@ -10,7 +9,6 @@ export class ParkingSessionsController {
   constructor(@Inject('SYSTEM_SERVICE') private readonly clientRMQ: ClientRMQ) { }
 
   @Post()
-  @Public()
   create(@Body() createParkingSessionDto: CreateParkingSessionDto) {
     return this.clientRMQ.send('createParkingSession', createParkingSessionDto)
   }
@@ -29,5 +27,4 @@ export class ParkingSessionsController {
   finish(@Param(':id') id: string, @Body() finishParkingSessionDto: FinishParkingSessionDto) {
     return this.clientRMQ.send('updateParkingSessionInfos', { id, ...finishParkingSessionDto })
   }
-
 }
