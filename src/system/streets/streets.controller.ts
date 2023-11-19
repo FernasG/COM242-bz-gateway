@@ -4,7 +4,7 @@ import { ClientRMQ } from "@nestjs/microservices";
 import { Public } from "src/auth/auth.decorators";
 import { CreateStreetDto, UpdateStreetDto } from "./streets.interface";
 
-@Controller('vehicles')
+@Controller('streets')
 @UseInterceptors(RabbitMQInterceptor)
 export class StreetsController {
   constructor(@Inject('SYSTEM_SERVICE') private readonly clientRMQ: ClientRMQ) { }

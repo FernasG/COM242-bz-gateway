@@ -14,7 +14,7 @@ export class CreateParkingSessionDto {
 export class UpdateParkingSessionDto {
   @IsString()
   street_id?: string
-  
+
   @IsString()
   vehicle_id?: string
 }
