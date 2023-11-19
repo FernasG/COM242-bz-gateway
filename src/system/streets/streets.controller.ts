@@ -1,8 +1,9 @@
 import { RabbitMQInterceptor } from "@libraries";
-import { Controller, Get, Post, Body, Patch, Param, Delete, Inject, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Inject, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { ClientRMQ } from "@nestjs/microservices";
 import { Public } from "src/auth/auth.decorators";
 import { CreateStreetDto, UpdateStreetDto } from "./streets.interface";
+import { FileInterceptor } from "@nestjs/platform-express";
 
 @Controller('streets')
 @UseInterceptors(RabbitMQInterceptor)
@@ -11,8 +12,9 @@ export class StreetsController {
 
   @Post(':user_id')
   @Public()
-  create(@Param('user_id') user_id: string, @Body() createStreetDto: CreateStreetDto) {
-    return this.clientRMQ.send('createStreet', {user_id, ...createStreetDto});
+  @UseInterceptors(FileInterceptor('file'))
+  create(@Param('user_id') user_id: string, @Body() createStreetDto: CreateStreetDto, @UploadedFile() file) {
+    return this.clientRMQ.send('createStreet', {user_id, ...createStreetDto, file});
   }
 
   @Get()
