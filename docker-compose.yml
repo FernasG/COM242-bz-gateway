@@ -42,5 +42,7 @@ services:
     restart: always
     environment:
       POSTGRES_PASSWORD: B5Ia4v39YUIz
+    ports:
+      - 5432:5432
     networks:
     - bz-network
