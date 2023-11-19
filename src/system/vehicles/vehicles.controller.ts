@@ -1,7 +1,6 @@
-import { RabbitMQInterceptor } from "@libraries";
 import { Controller, Get, Post, Body, Patch, Param, Delete, Inject, UseInterceptors } from '@nestjs/common';
 import { ClientRMQ } from "@nestjs/microservices";
-import { Public } from "src/auth/auth.decorators";
+import { RabbitMQInterceptor } from "@libraries";
 import { CreateVehicleDto, UpdateVehicleDto } from "./vehicles.interface";
 
 @Controller('vehicles')
@@ -9,10 +8,9 @@ import { CreateVehicleDto, UpdateVehicleDto } from "./vehicles.interface";
 export class VehiclesController {
   constructor(@Inject('SYSTEM_SERVICE') private readonly clientRMQ: ClientRMQ) { }
 
-  @Post(':user_id')
-  @Public()
-  create(@Param('user_id') user_id: string, @Body() createUserDto: CreateVehicleDto) {
-    return this.clientRMQ.send('create', {user_id, ...createUserDto});
+  @Post()
+  create(@Body() createVehicleDto: CreateVehicleDto) {
+    return this.clientRMQ.send('createVeichle', createVehicleDto);
   }
 
   @Get(':user_id')

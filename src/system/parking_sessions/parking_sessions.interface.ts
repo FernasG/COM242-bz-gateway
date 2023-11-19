@@ -1,8 +1,8 @@
-import { IsDate, IsString } from "class-validator"
+import { IsDate, IsDateString, IsString } from "class-validator"
 
 export class CreateParkingSessionDto {
-  @IsDate()
-  entry_time: Date
+  @IsDateString()
+  entry_time: string
 
   @IsString()
   street_id: string

@@ -24,7 +24,7 @@ export class StreetsController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateStreetDto: UpdateStreetDto) {
-    return this.clientRMQ.send('updateStreets', { id, ...updateStreetDto });
+    return this.clientRMQ.send('updateStreet', { id, ...updateStreetDto });
   }
 
   @Delete(':id')
