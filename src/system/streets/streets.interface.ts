@@ -1,4 +1,4 @@
-import { IsEmail, IsString, Length, IsNotEmpty, IsOptional } from 'class-validator';
+import { IsString, Length, IsNotEmpty, IsOptional, IsLatitude } from 'class-validator';
 
 export class CreateStreetDto {
   @IsString()
@@ -17,6 +17,12 @@ export class CreateStreetDto {
 
   @IsNotEmpty()
   vacancies: number;
+
+  @IsString()
+  latitude: string;
+  
+  @IsString()
+  longitude: string;
 }
 
 export class UpdateStreetDto {
@@ -36,4 +42,12 @@ export class UpdateStreetDto {
 
   @IsOptional()
   vacancies: number;
+
+  @IsString()
+  @IsOptional()
+  latitude: string;
+  
+  @IsString()
+  @IsOptional()
+  longitude: string;
 }
