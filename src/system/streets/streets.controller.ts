@@ -14,12 +14,17 @@ export class StreetsController {
   @Public()
   @UseInterceptors(FileInterceptor('file'))
   create(@Body() createStreetDto: CreateStreetDto, @UploadedFile() file) {
-    return this.clientRMQ.send('createStreet', {...createStreetDto, file});
+    return this.clientRMQ.send('createStreet', { ...createStreetDto, file });
   }
 
   @Get()
   findAll() {
     return this.clientRMQ.send('findAllStreets', {});
+  }
+
+  @Get(':id')
+  findById(@Param('id') id: string) {
+    return this.clientRMQ.send('findStreet', { id });
   }
 
   @Patch(':id')
