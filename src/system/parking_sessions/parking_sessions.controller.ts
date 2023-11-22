@@ -25,6 +25,6 @@ export class ParkingSessionsController {
 
   @Patch(':id')
   finish(@Param(':id') id: string, @Body() finishParkingSessionDto: FinishParkingSessionDto) {
-    return this.clientRMQ.send('updateParkingSessionInfos', { id, ...finishParkingSessionDto })
+    return this.clientRMQ.send('finishParkingSession', { id, ...finishParkingSessionDto })
   }
 }
