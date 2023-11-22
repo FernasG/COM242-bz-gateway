@@ -10,11 +10,11 @@ import { FileInterceptor } from "@nestjs/platform-express";
 export class StreetsController {
   constructor(@Inject('SYSTEM_SERVICE') private readonly clientRMQ: ClientRMQ) { }
 
-  @Post(':user_id')
+  @Post()
   @Public()
   @UseInterceptors(FileInterceptor('file'))
-  create(@Param('user_id') user_id: string, @Body() createStreetDto: CreateStreetDto, @UploadedFile() file) {
-    return this.clientRMQ.send('createStreet', {user_id, ...createStreetDto, file});
+  create(@Body() createStreetDto: CreateStreetDto, @UploadedFile() file) {
+    return this.clientRMQ.send('createStreet', {...createStreetDto, file});
   }
 
   @Get()
