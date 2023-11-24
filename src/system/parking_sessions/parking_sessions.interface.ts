@@ -20,6 +20,5 @@ export class UpdateParkingSessionDto {
 }
 
 export class FinishParkingSessionDto {
-  @IsDate()
-  time?: Date
+  time?: string
 }
