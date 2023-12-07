@@ -21,6 +21,10 @@ export class CreateUserDto {
   @IsString()
   @IsNotEmpty()
   register: string;
+  
+  @IsString()
+  @IsNotEmpty()
+  role: string;
 }
 
 export class UpdateUserDto {
