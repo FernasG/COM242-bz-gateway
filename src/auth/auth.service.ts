@@ -17,6 +17,13 @@ export class AuthService {
 
     const { password_hash, ...userSafeData } = user;
 
+    const { role } = await this.prismaService.user.findFirst({
+      select: {
+        role: true,
+      },
+      where: {email}
+    })
+
     const comparePassword = bcrypt.compareSync(password, password_hash);
 
     if (!comparePassword) throw new UnauthorizedException('Unable to Sign In');
@@ -24,6 +31,6 @@ export class AuthService {
     const payload = { sub: user.id, email: user.email };
     const accessToken = await this.jwtService.signAsync(payload);
 
-    return { ...userSafeData, access_token: accessToken };
+    return { ...userSafeData, access_token: accessToken, role };
   }
 }
