@@ -21,10 +21,33 @@ export class CreateUserDto {
   @IsString()
   @IsNotEmpty()
   register: string;
+}
+
+export class CreateSupervisiorDto {
+  @IsString()
+  @Length(10, 120)
+  name: string;
+
+  @IsEmail()
+  @Length(10, 80)
+  @IsNotEmpty()
+  email: string;
+
+  @IsString()
+  @IsNotEmpty()
+  password: string;
+
+  @IsString()
+  @IsNotEmpty()
+  cellphone: string;
+
+  @IsString()
+  @IsNotEmpty()
+  register: string;
   
   @IsString()
   @IsNotEmpty()
-  role: string;
+  street_id: string;
 }
 
 export class UpdateUserDto {

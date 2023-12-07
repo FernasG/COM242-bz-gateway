@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Inject, UseInterceptors } from '@nestjs/common';
 import { ClientRMQ } from '@nestjs/microservices';
-import { CreateUserDto, UpdateUserDto } from './users.interface';
+import { CreateSupervisiorDto, CreateUserDto, UpdateUserDto } from './users.interface';
 import { Public } from 'src/auth/auth.decorators';
 import { RabbitMQInterceptor } from '@libraries';
 
@@ -13,6 +13,11 @@ export class UsersController {
   @Public()
   create(@Body() createUserDto: CreateUserDto) {
     return this.clientRMQ.send('createUser', createUserDto);
+  }
+  
+  @Post()
+  createSupervisior(@Body() createSupervisiorDto: CreateSupervisiorDto) {
+    return this.clientRMQ.send('createSupervisior', createSupervisiorDto);
   }
 
   @Get()
