@@ -44,10 +44,6 @@ export class CreateSupervisiorDto {
   @IsString()
   @IsNotEmpty()
   register: string;
-  
-  @IsString()
-  @IsNotEmpty()
-  street_id: string;
 }
 
 export class UpdateUserDto {

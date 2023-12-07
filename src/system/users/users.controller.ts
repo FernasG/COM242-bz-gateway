@@ -15,8 +15,8 @@ export class UsersController {
     return this.clientRMQ.send('createUser', createUserDto);
   }
   
-  @Post('fiscal')
-  createSupervisior(@Body() createSupervisiorDto: CreateSupervisiorDto) {
+  @Post(':streetId')
+  createSupervisior(@Param('streetId') streetId: string ,@Body() createSupervisiorDto: CreateSupervisiorDto) {
     return this.clientRMQ.send('createSupervisior', createSupervisiorDto);
   }
 
